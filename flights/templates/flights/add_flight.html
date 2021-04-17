@@ -1,0 +1,19 @@
+{% extends 'flights/basic.html' %}
+{% block body %}
+<div class="container">
+        <form style="margin-left:200px; margin-top:20px; text-align: left;" method="POST", action="{%url 'addflight' %}">{%csrf_token%}
+                <div>
+                        <h3>ORIGIN: {{form.origin}}</h3>
+                        <h3>DESTINATION: {{form.destination}}</h3>
+                        <h3>DURATION: {{form.duration}}</h3>
+                        <input type="submit" value="Submit">
+                </div>                        
+                {%if messages%}
+                {%for message in messages %}
+                <h2>{{message}}</h2>
+                {%endfor%}
+        </form>
+</div>
+{%endif %}
+
+{% endblock body %}

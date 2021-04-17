@@ -1,0 +1,47 @@
+{% extends 'flights/basic.html'%}
+
+{%block css%}
+<style>
+  .main
+  {
+    font-size: 40px;
+    color: brown;
+    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+    padding: 10px 0px;
+  }
+</style>
+{%endblock%}
+{% block body %}
+<div class="container">
+  <h2 class="main">List Of Flights</h2>
+  <table class="table table-hover table-dark" style="width: 800px; margin: auto; ">
+    <!-- <caption>Table</caption> -->
+    <thead>
+      <tr>
+        <th scope="col">Sr. No.</th>
+        <th scope="col">Origin</th>
+        <th scope="col">Destination</th>
+        <th scope="col">Duration</th>
+        <th scope="col">Details</th>
+      </tr>
+    </thead>
+    {% for i in flights %}
+      <tr>
+        <th scope="row">{{i.id}}</th>
+        <td>{{i.origin}}</td>
+        <td>{{i.destination}}</td>
+        <td>{{i.duration}}</td>
+        <td><a href="/flights/{{i.id}}">View Details</a></td>
+      </tr>      
+    {%endfor%}
+    </tbody>
+  </table>
+</div>
+  <a href="/flights/addflight"><button style="margin-top: 20px;" type="text" class="btn btn-secondary">Add Another FLight</button></a>
+  
+<script>
+  if ( window.history.replaceState ) {
+        window.history.replaceState( null, null, window.location.href );
+    }
+</script>
+{% endblock body %}

@@ -1,0 +1,72 @@
+{%extends 'shop/basic.html'%}
+
+{%css block%}
+<style>
+    .deliver
+    {
+        border:2px solid black;
+        border-radius: 50px;        
+        background-color: darkgrey;
+        color:black;
+    }
+    .deliver:hover
+    {
+        background-color: lightgrey;
+        color: green;
+    }
+</style>
+{%endblock%}
+{%block body%}
+<div class="container">
+<div class="col my-4">
+    <h3 style="text-align: center; margin-bottom: 20px;">Enter Your Details</h3>
+    <form method="POST" action="{% url 'checkout' %}">{% csrf_token %}
+        <div class="form-row">
+            <input type="hidden" id="json" name="json">
+            <div class="form-group col-md-6">
+                <label for="name">Name</label>
+                <input type="name" class="form-control" id="name" name="name" placeholder="Name">
+            </div>
+            <div class="form-group col-md-6">
+                <label for="email">Email</label>
+                <input type="email" class="form-control" id="email" name="email" placeholder="email">
+            </div>
+        </div>
+        <div class="form-group">
+            <label for="address1">Address</label>
+            <input type="text" class="form-control" id="address1" name="address1" placeholder="1234 Main St">
+        </div>
+        <div class="form-row">
+            <div class="form-group col-md-6">
+                <label for="city">City</label>
+                <input type="text" class="form-control" id="city" name="city">
+            </div>
+            <div class="form-group col-md-4">
+                <label for="state">State</label>
+                <input type="text" class="form-control" id="state" name="state">
+            </div>
+            <div class="form-group col-md-2">
+                <label for="zipcode">Zip Code</label>
+                <input type="number" class="form-control" id="zipcode" name="zipcode">
+            </div>
+            <div class="form-group col-md-2">
+                <label for="inputZip">Phone Number</label>
+                <input type="number" class="form-control" id="phone" name="phone">
+            </div>
+        </div>
+        <button class="deliver" type="submit">Deliver Here</button>
+    </form>
+    </div>
+</div>
+<script>
+    if({{ok}}==1)
+    {
+        var list={};
+        localStorage.setItem('totalitems',0);
+        localStorage.setItem('allproducts',list);
+    }
+    if (window.history.replaceState ) {
+  window.history.replaceState( null, null, window.location.href );
+}
+</script>
+{%endblock%}
